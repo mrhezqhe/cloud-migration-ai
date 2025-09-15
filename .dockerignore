@@ -1,0 +1,17 @@
+# Prevent unnecessary files in Docker image
+.git
+.gitignore
+.vscode
+.idea
+__pycache__/
+*.pyc
+*.pyo
+*.swp
+*.swo
+*.log
+.env
+.env.*
+tests/
+docs/
+node_modules/
+tmp/
