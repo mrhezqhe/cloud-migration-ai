@@ -1,0 +1,26 @@
+# poc/k8s/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-ingress
+  namespace: cloud-ai
+  annotations:
+    kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: api
+            port:
+              number: 8000
+      - path: /retail
+        pathType: Prefix
+        backend:
+            service:
+              name: retail-java
+              port:
+                number: 8080

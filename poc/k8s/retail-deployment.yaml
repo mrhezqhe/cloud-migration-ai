@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: retail
+  namespace: cloud-ai
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: retail
+  template:
+    metadata:
+      labels:
+        app: retail
+    spec:
+      containers:
+      - name: retail
+        image: <account>.dkr.ecr.<region>.amazonaws.com/retail:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: retail
+  namespace: cloud-ai
+spec:
+  selector:
+    app: retail
+  ports:
+  - port: 8080
+    targetPort: 8080

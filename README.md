@@ -4,6 +4,12 @@
 Migrate a legacy on-prem retail-analytics platform to AWS EKS + Aurora **and add a
 machine-learning service that predicts cluster load one hour ahead for proactive autoscaling.**
 
+
+Lift-and-Reshape: Monolithic Spring Boot app containerized → EKS.
+AI Add-on: Python Forecast microservice for predictive autoscaling.
+Modern Data Layer: Amazon Aurora Postgres + Kafka for events.
+Scalable Delivery: ALB + Ingress + Horizontal Pod Autoscaler.
+
 ## My Role
 Principal/Lead Architect — cloud migration strategy, AI forecasting design, PoC deployment.
 
@@ -23,7 +29,7 @@ Principal/Lead Architect — cloud migration strategy, AI forecasting design, Po
 ## Architecture Overview
 ![context-diagram](diagrams/context.png)
 
-- **Forecast Service (new)**: FastAPI + Prophet model pulls CPU/memory metrics from CloudWatch,
+- Forecast Service: FastAPI + Prophet model pulls CPU/memory metrics from CloudWatch,
   predicts next-hour workload, and publishes a “desired replicas” signal to the HPA controller.
 - Core: AWS ALB + CloudFront → EKS (Kubernetes microservices)
 - Data: Aurora PostgreSQL + S3 data lake
